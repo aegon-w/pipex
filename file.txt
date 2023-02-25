@@ -1,0 +1,70 @@
+								    PIPEX
+
+FILE DESCRIPTOR ?
+
+	* A file descriptor is an integer value that is used by a process to identify an open file or other input/output (I/O) resource. A file descriptor represents a connection between the process and an underlying I/O resource, such as a file, pipe, socket, or device.
+
+PIPE ?
+
+	* pipes are implemented as part of the operating system's kernel.
+
+	* In C, a pipe is a mechanism for inter-process communication (IPC) that allows data to be exchanged between two processes. It is a way for one process to send data to another process that is connected to it through the pipe.
+
+    * When a pipe is created, the kernel creates an internal buffer to hold the data that is being transferred between the two processes connected by the pipe. The kernel also creates two file descriptors, one for the read end of the pipe and one for the write end of the pipe, which are used to access the pipe from user space.
+
+    * Because pipes are implemented in the kernel, they provide a relatively fast and efficient mechanism for inter-process communication. They are commonly used in Unix-based systems for a variety of tasks, including shell scripting, network programming, and process coordination
+
+FORK?
+
+	*  fork() is a system call that is implemented in the kernel of Unix-based operating systems such as Linux.
+
+	*  fork() is a system call that creates a new process by duplicating the calling process. The new process is called the child process, and the calling process is called the parent process.
+
+    * When a fork() system call is executed, the operating system creates a new process by duplicating the entire address space of the calling process, including all of its code, data, and stack. The new process is an exact copy of the calling process, except that it has a unique process ID (PID), and its parent process ID (PPID) is set to the PID of the calling process.
+
+    * After the fork() system call is executed, the parent process and the child process run independently of each other. They each have their own copies of the program counter, registers, and stack. The child process can modify its own copy of the data and stack without affecting the parent process.
+
+    * Forking is a powerful mechanism for creating new processes in Unix-based systems. It is commonly used for a variety of tasks, including parallel processing, daemon creation, and process isolation.
+
+
+CLOSE ?
+
+	*  the close() system call is used to close a file descriptor that is no longer needed by a process.
+
+	*  Closing a file descriptor is important because it releases system resources that were allocated to the file descriptor, such as memory used for buffering or hardware resources like network connections or open files.
+
+	* It is important to close file descriptors when they are no longer needed because open file descriptors consume system resources that can be limited, especially in embedded or resource-constrained systems. Failing to close file descriptors can also result in unexpected behavior, such as memory leaks or file corruption.
+
+DUP2 ?
+
+	* dup2() is a system call in Unix-based operating systems that is implemented in the kernel. It is used to duplicate a file descriptor, which creates a new file descriptor that refers to the same open file description as the original file descriptor.
+
+	*  The dup2() system call takes two file descriptors as arguments: the file descriptor to be duplicated, and the file descriptor to use as the new duplicate. If the new file descriptor is already in use, dup2() closes it before duplicating the original file descriptor, ensuring that the new file descriptor refers to the same open file description as the original file descriptor. 
+
+	* By using dup2(), applications can efficiently manage their use of file descriptors and avoid resource contention or leakage. Additionally, because dup2() is implemented in the kernel, it is typically faster and more efficient than higher-level file manipulation functions in user space.
+
+EXECVE ?
+
+	* In summary, execve() is a system call that replaces the current process image with a new program image, and allows a program to execute other programs and pass them command-line arguments and environment variables.
+
+    * The execve() system call takes three arguments: the path to the executable file to be executed, an array of command-line arguments, and an array of environment variables. The path argument specifies the path to the executable file, and the argument and environment variable arrays are passed to the new program as its command-line arguments and environment variables, respectively.
+
+    * execve() is often used in combination with the fork() system call to create a new process and then replace its image with a new program. This allows a program to create new processes and execute other programs without exiting or terminating the current process.
+
+———————————more information——————————————
+
+TTY ?
+
+	* In summary, a TTY is a device file that represents the console or terminal that a process is connected to, and it provides an interface for the process to interact with the user or the system console.
+
+
+WHERE WE STORED THE INPUT  BEFORE READ IT?
+
+	* When a user types input at the keyboard or sends input from another process, the input data is stored in the kernel's input buffer until it is read by a process that is waiting for input.
+
+PROCEES INIT ? 
+	
+	* The init process is typically started by the system's boot loader and is responsible for initializing the system and starting other processes.
+
+    * The init process has a process ID (PID) of 1 and is the parent of all other processes in the system. It is responsible for starting system daemons, services, and other background processes that are required for the system to function properly.
+
